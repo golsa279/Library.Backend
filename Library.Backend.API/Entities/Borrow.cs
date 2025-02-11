@@ -13,8 +13,9 @@ namespace Library.Backend.API.Entities
         public Book? Book { get; set; }
 
         public int BookId { get; set; }
+        public Member? Member { get; set; }
         public int MemberId { get; set; }
 
-        public Member? Member { get; set; }
+        
     }
 }
