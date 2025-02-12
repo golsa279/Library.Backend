@@ -10,6 +10,5 @@ namespace Library.Backend.API.DTOs.Security
         public required string Username { get; set; }
         public required string Password { get; set; }
         
-        
     }
 }

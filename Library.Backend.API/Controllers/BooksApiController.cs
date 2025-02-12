@@ -90,14 +90,16 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpDelete("remove/{id}")]
-        public async Task Remove(int id)
+        public async Task<bool> Remove(int id)
         {
             var entity = await _db.Books.FindAsync(id);
             if (entity != null)
             {
                 _db.Books.Remove(entity);
                 await _db.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
     }
 }
