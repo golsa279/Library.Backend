@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Backend.API.Migrations
 {
     [DbContext(typeof(LibrarySystemDatabase))]
-    [Migration("20250204122204_Initial")]
-    partial class Initial
+    [Migration("20250212183641_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,31 @@ namespace Library.Backend.API.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Borrows");
+                });
+
+            modelBuilder.Entity("Library.Backend.API.Entities.Librarian", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fullname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Salary")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Librarians");
                 });
 
             modelBuilder.Entity("Library.Backend.API.Entities.LibraryUser", b =>

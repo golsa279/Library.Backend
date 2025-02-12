@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,9 +22,6 @@ builder.Services.AddDbContext<LibrarySystemDatabase>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MainDB"));
 });
 
-// builder.Services.AddDefaultIdentity<IdentityUser>()
-//     .AddRoles<IdentityRole>()
-
 //for using any frontend
 builder.Services.AddCors(options =>
 {
@@ -35,19 +30,10 @@ builder.Services.AddCors(options =>
         policy.AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin();
-
-        // options.AddPolicy(name: MyAllowSpecificOrigins,
-        //               policy  =>
-        //               {
-        //                   policy.WithOrigins("http://example.com",
-        //                                       "http://www.contoso.com");
-        //               });
     });
 });
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
-
-
 
 builder.Services.AddIdentityApiEndpoints<LibraryUser>(Options =>
 {

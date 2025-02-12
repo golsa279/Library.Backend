@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Library.Backend.API.DB;
 using Library.Backend.API.DTOs.Security.Books;
@@ -78,14 +79,18 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpDelete("remove/{id}")]
-        public async Task Remove(int id)
+        public async Task<bool> Remove(int id)
         {
             var entity = await _db.Borrows.FindAsync(id);
             if (entity != null)
             {
                 _db.Borrows.Remove(entity);
                 await _db.SaveChangesAsync();
+                return true;
             }
+            return false;
+           
         }
+        
     }
 }

@@ -14,5 +14,6 @@ namespace Library.Backend.API.DB
         public required DbSet<Book> Books { get; set; }
         public required DbSet<Member> Members { get; set; }
         public required DbSet<Borrow> Borrows { get; set; }
+        public required DbSet<Librarian> Librarians { get; set; }
     }
 }

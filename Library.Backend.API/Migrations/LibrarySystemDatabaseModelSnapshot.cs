@@ -73,6 +73,31 @@ namespace Library.Backend.API.Migrations
                     b.ToTable("Borrows");
                 });
 
+            modelBuilder.Entity("Library.Backend.API.Entities.Librarian", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fullname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Salary")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Librarians");
+                });
+
             modelBuilder.Entity("Library.Backend.API.Entities.LibraryUser", b =>
                 {
                     b.Property<string>("Id")
