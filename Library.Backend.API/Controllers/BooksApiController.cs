@@ -15,7 +15,7 @@ namespace Library.Backend.API.Controllers
 {
     [ApiController]
     [Route("api/books")]
-    [Authorize]
+
     public class BooksApiController(LibrarySystemDatabase db) : ControllerBase
     {
         private readonly LibrarySystemDatabase _db = db;
@@ -48,6 +48,7 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize]
 
         public async Task Add(BookAddDto dto)
         {
@@ -62,6 +63,7 @@ namespace Library.Backend.API.Controllers
         }
         
         [HttpGet("details/{id}")]
+        [Authorize]
         public async Task<ActionResult<BookDetailsDto>> Details(int id)
         {
             var book=await _db.Books.FirstOrDefaultAsync(m=>m.Id==id);
@@ -77,6 +79,7 @@ namespace Library.Backend.API.Controllers
             return NotFound();
         }
         [HttpPut("edit/{id}")]
+        [Authorize]
         public async Task Edit(int id,BookEditDto dto)
         {
             var entity = await _db.Books.FindAsync(id);
@@ -90,6 +93,7 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpDelete("remove/{id}")]
+        [Authorize]
         public async Task<bool> Remove(int id)
         {
             var entity = await _db.Books.FindAsync(id);

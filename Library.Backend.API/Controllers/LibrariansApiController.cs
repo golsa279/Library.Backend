@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 using Library.Backend.API.DB;
 using Library.Backend.API.DTOs.Security.Generic;
 using Library.Backend.API.DTOs.Security.librarians;
 using Library.Backend.API.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +16,7 @@ namespace Library.Backend.API.Controllers
 {
     [ApiController]
     [Route("api/librarians")]
+    [Authorize]
     public class LibrariansApiController(LibrarySystemDatabase db) : ControllerBase
     {
         private readonly LibrarySystemDatabase _db = db;
