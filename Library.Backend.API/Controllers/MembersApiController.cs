@@ -33,7 +33,6 @@ namespace Library.Backend.API.Controllers
             }
             query = query.Skip(listRequestDto.Size * listRequestDto.Page);
             query = query.Take(listRequestDto.Size);
-            Thread.Sleep(1000);
             return await
                 query
                 .Select(b => new MemberSummaryDto

@@ -29,12 +29,12 @@ namespace Library.Backend.API.Controllers
             {
                 query=query.Where(m=>
                     m.Title.Contains(listRequestDto.Keyword) ||
-                    m.Writer.Contains(listRequestDto.Keyword)
+                    m.Writer.Contains(listRequestDto.Keyword) ||
+                    m.Category.Contains(listRequestDto.Keyword)
                 );
             }
             query=query.Skip(listRequestDto.Size*listRequestDto.Page);
             query=query.Take(listRequestDto.Size);
-            Thread.Sleep(1000);
             return await
                 query
                 .Select(b=>new BookSummaryDto
@@ -42,7 +42,9 @@ namespace Library.Backend.API.Controllers
                     Id=b.Id,
                     Price=b.Price,
                     Title=b.Title,
-                    Writer=b.Writer
+                    Writer=b.Writer,
+                    Category=b.Category,
+                    ImgPath=b.ImgPath
                 })
                 .ToListAsync();
         }
@@ -56,7 +58,10 @@ namespace Library.Backend.API.Controllers
             {
                 Title=dto.Title,
                 Writer=dto.Writer,
-                Price=dto.Price
+                Price=dto.Price,
+                Category=dto.Category,
+                ImgPath=dto.ImgPath
+                
             };
             await _db.Books.AddAsync(book);
             await _db.SaveChangesAsync();
@@ -73,7 +78,9 @@ namespace Library.Backend.API.Controllers
                 {
                     Title=book.Title,
                     Writer=book.Writer,
-                    Price=book.Price
+                    Price=book.Price,
+                    Category=book.Category,
+                    ImgPath=book.ImgPath
                 };
             }
             return NotFound();
@@ -88,6 +95,8 @@ namespace Library.Backend.API.Controllers
                 entity.Title = dto.Title;
                 entity.Writer = dto.Writer;
                 entity.Price = dto.Price;
+                entity.Category = dto.Category;
+                entity.ImgPath = dto.ImgPath;
                 await _db.SaveChangesAsync();
             }
         }

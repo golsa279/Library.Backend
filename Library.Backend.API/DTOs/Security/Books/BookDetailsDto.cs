@@ -10,5 +10,7 @@ namespace Library.Backend.API.DTOs.Security.Books
         public string? Title { get; set; }
         public string? Writer { get; set; }
         public double Price { get; set; }
+        public string? Category { get; set; }
+        public string? ImgPath { get; set; }
     }
 }

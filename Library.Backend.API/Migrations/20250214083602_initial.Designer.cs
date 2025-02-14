@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Backend.API.Migrations
 {
     [DbContext(typeof(LibrarySystemDatabase))]
-    [Migration("20250212183641_initial")]
+    [Migration("20250214083602_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -32,6 +32,12 @@ namespace Library.Backend.API.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImgPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");

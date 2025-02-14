@@ -29,7 +29,7 @@ namespace Library.Backend.API.Controllers
         [HttpPost("list")]
         public async Task<List<Borrow>> List()
         {
-            Thread.Sleep(1000);
+
             return await _db
                 .Borrows
                 .Include(m=>m.Book)
