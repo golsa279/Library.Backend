@@ -17,6 +17,7 @@ namespace Library.Backend.API.Controllers
     [ApiController]
     [Route("api/borrows")]
     [Authorize]
+    
     public class BorrowsApiController : ControllerBase
     {
         private readonly LibrarySystemDatabase _db;
@@ -40,6 +41,7 @@ namespace Library.Backend.API.Controllers
 
          
         [HttpGet("details/{id}")]
+
         public async Task<ActionResult<BorrowDetailsDto>> Details(int id)
         {
             var borrow=await _db.Borrows.FirstOrDefaultAsync(m=>m.Id==id);
@@ -55,6 +57,7 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpPost("add")]
+
         public async Task Add(BorrowAddDto dto)
         {
             var borrow=new Borrow
@@ -68,6 +71,7 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpPut("edit/{id}")]
+
         public async Task Edit(int id, Borrow borrow)
         {
             var entity = await _db.Borrows.FindAsync(id);
@@ -79,6 +83,7 @@ namespace Library.Backend.API.Controllers
         }
 
         [HttpDelete("remove/{id}")]
+
         public async Task<bool> Remove(int id)
         {
             var entity = await _db.Borrows.FindAsync(id);

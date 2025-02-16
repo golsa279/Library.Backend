@@ -30,7 +30,9 @@ builder.Services.AddCors(options =>
         policy.AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin();
+        
     });
+
 });
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
@@ -65,7 +67,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapIdentityApi<LibraryUser>();
 
